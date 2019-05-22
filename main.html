@@ -22,6 +22,8 @@
    * $scope는 AngularJS에서 매우 중요한 요소임.
    */
   function PhoneListController($scope) {
+    //  $scope는 jQuery에서 $에 해당하는 전역 객체로 볼 수 있다.
+    //  어느 곳에서도 접근할 수 있도록 설정해 주는 역할을 한다고 볼 수 있다.
     $scope.phones = [
       { "name": "Nexus S",
 				"snippet": "Fast just got faster with Nexus S."
@@ -35,12 +37,18 @@
         "snippet": "The Next, Next Generation tablet."
       }
     ];
+    $scope.hello = "hello, Angular!";
   }
   </script>
 </head>
-<body>
-  <ul ng-controller="PhoneListController">
-    <li ng-repeat="phone in phones">
+<body ng-controller="PhoneListController">
+  <input type="text" ng-model="searchKeyword"/>
+  <!-- 
+    searchKeyword 라는 이름의 Angular 모델을 선언해 주었다.
+    여기에 입력된 내용은 searchKeyword 라는 모델에 자동으로 들어간다.
+   -->
+  <ul>
+    <li ng-repeat="phone in phones | filter:searchKeyword">
       Name : {{ phone.name }}<br/>
       Snippet : {{ phone.snippet }}
     </li>
@@ -52,6 +60,10 @@
       이 배열들은 PhoneListCtrl 컨트롤러에 의해 제어됨.
       AngularJS에서 뷰는 데이터 모델의 값들이 HTML 템플릿을 통해 보여진 결과라고 볼 수 있음.
       언제든 모델이 변하면 AngularJS는 적절하게 연결된 요소를 반영하여 뷰를 업데이트 한다.
+
+      filter가 추가 되었다.
+      filter 함수는 ng-repeat에 영향을 주게 된다.
+      특별히 searchKeyword에 입력된 값에 따라 내용을 필터링해서 보여준다.
      -->
   </ul>
 </body>
