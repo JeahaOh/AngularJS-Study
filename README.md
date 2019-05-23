@@ -49,3 +49,10 @@ jQeury의 ajax 통신과 유사한 구조를 갖고 있으며,
 AngularJS 내장 객체인 $http 객체를 이용해서 백그라운드 데이터 통신을 구현.  
 통신을 위해 간단한 main.js로 Node.js 서버를 구현함.  
 
+# 06 루트 프로바이더 - Multiple Views, Routing and Layout Template
+AngularJS에는 다양한 뷰를 지원하고,  
+입력 되는 주소에 따라 이 주소를 인지해서 다른 페이지를 보여주는 것이 가능함.  
+Spring에서 Dispatcher Servlet이 존재하고,  
+이 Dispatcher Servlet이 모든 입력을 다 받아 주소에 따라 적절한 컨트롤러 선택해 주는것 처럼  
+AngularJS에서도 선택되는 주소에 따라 적절한 View를 선택해서 화면에 보여주는 것이 가능하다.  
+

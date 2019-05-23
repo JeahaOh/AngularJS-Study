@@ -1,0 +1,43 @@
+Search : 
+  <input type="text" ng-model="searchKeyword"/>
+  <!-- 
+    searchKeyword 라는 이름의 Angular 모델을 선언해 주었다.
+    여기에 입력된 내용은 searchKeyword 라는 모델에 자동으로 들어간다.
+   -->
+  OrderBy : 
+  <select ng-model="orderProperty">
+    <option value="name" selected>name</option>
+    <option value="snippet">snippet</option>
+    <option value="no">no</option>
+  </select>
+  <!-- 
+    orderProperty 라는 임의의 이름으로 정렬 순서를 정해줄 앵귤러 모델을 선언해 주었다.
+   -->
+  <ul>
+    <li ng-repeat="phone in phones | filter:searchKeyword | orderBy:orderProperty">
+      NO : {{ phone.no }}<br/>
+      Name : {{ phone.name }}<br/>
+      Snippet : {{ phone.snippet }}
+    </li>
+    <!-- 
+      for( var i in array ) 와 동일한 효과를 주는 방식이다.
+      뷰는 ul 아래 li가 ng-repeat 속성을 통해
+      phone 객체 안에 이름과 스니펫에 대한 속성을 반복적으로 출력하는 부분을 통해 살펴 볼 수 있다.
+      데이터 모델은 예제에서는 단순하게 Phone 객체들의 배열로 표현된다.
+      이 배열들은 PhoneListCtrl 컨트롤러에 의해 제어됨.
+      AngularJS에서 뷰는 데이터 모델의 값들이 HTML 템플릿을 통해 보여진 결과라고 볼 수 있음.
+      언제든 모델이 변하면 AngularJS는 적절하게 연결된 요소를 반영하여 뷰를 업데이트 한다.
+
+      filter가 추가 되었다.
+      filter 함수는 ng-repeat에 영향을 주게 된다.
+      특별히 searchKeyword에 입력된 값에 따라 내용을 필터링해서 보여준다.
+
+      orderBy 라는 항목이 추가 되었다.
+      filter 함수가 매칭되는 내용을 찾는 거라면,
+      orderBy는 value에 할당된 값과 일치하는 객체의 요소 명을 기준으로 정렬한다.
+     -->
+  </ul>
+  <p>
+    Search Keyword : {{searchKeyword || 'None'}}<br/>
+    Sort By : {{orderProperty}}
+  </p>

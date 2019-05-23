@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="kor" ng-app ng-controller="PhoneListController">
+<html lang="kor" ng-app="basePoint">
   <!-- ng-app 이라는 지시어를 통해 AngularJS가 어디에서부터 DOM을 컴피알 해야하는지 명시하고 있음. -->
 <head>
   <meta charset="UTF-8">
@@ -13,52 +13,69 @@
     콜백이 실행되면, AngularJS는 ng-app 지시어를 찾게 된다.
     다이렉티브를 찾으면 ng-app 지시어가 정의된 요소가 존재하는 어플리케이션 등의 최상위에 부트스트랩을 건다.
   -->
-  <script type="text/javascript" charset="utf-8" src="controller.js"></script>
+  <!-- <script type="text/javascript" charset="utf-8" src="route.js"></script>
+  <script type="text/javascript" charset="utf-8" src="controller.js"></script> -->
+  <script type="text/javascript" charset="utf-8">
+    /**
+     * [경로 설정]
+     * 경로(주소)에 따라 다른 뷰를 보여주도록 설정.
+     * 모듈의 첫번째 인자 값으로 ng-app의 이름을 설정하고,
+     * $routeProvider를 가져와서 설정을 한다.
+     */
+    angular.module('basePoint', [])
+    .config(['$routeProvider', function($routeProvider){
+      $routeProvider
+        /* 경로 명이 /phones일 때 */
+        .when('/phones', {
+          /* 해당 경로일 때 페이지 */
+          templateUrl: '/phone-list.html',
+          /* 해당 경로일 때 사용할 컨트롤러 */
+          controller: PhoneListController
+        })
+        /* 경로 명이 /phones/phoneId일 때 */
+        .when('/phones/:phoneId', {
+          templateUrl: '/phone-detail.html',
+          controller: PhoneDetailController
+        })
+        /* 그 외의 경로일 때 리다이렉트 함. */
+        .otherwise({
+          redirectTo: '/phones'
+        });
+    }]);
+
+    /*[컨트롤러]
+    * BODY 태그 안에 ng-controller 에서 할당해준 컨트롤러의 이름과 동일한
+    * 자바스크립트 함수가 자동으로 매칭된다.
+    * ng-controller에서 호출할 때는 scope 파라메터를 따로 넣지 않았지만,
+    * 실제 컨트롤러 함수에서는 아래와 같이 $scope 를 파라메터로 받는다.
+    * 백그라운드 통신을 위해 $http를 파라메터로 추가해준다.
+    */
+    //  세부 폰 정보를 보여주는 컨트롤러
+    function PhoneDetailController($scope, $routeParams){
+      $scope.phoneId = $routeParams.phoneId;
+    }
+
+    //  폰 리스트를 보여주는 컨트롤러
+    function PhoneListController($scope, $http)
+    {
+      //jQuery의 ajax 통신과 거의 유사하다.
+      $http.get('/sample.json').success(
+      function(data)
+      {
+        $scope.phones = data;
+      });
+      
+      //기본값을 미리 번호로 정해주었다.
+      //기본값을 정하지 않아도 되지만, 그럴경우 선언된 순서대로 표시된다.
+      $scope.orderProperty = "no";
+      
+      //이렇게 선언된 배열 형태의 데이터 모델은 후에 NG-REPEAT에 의해 사용된다.
+    }
+  </script>
   <!-- controller를 로드한다. -->
 </head>
 <body>
-  Search : 
-  <input type="text" ng-model="searchKeyword"/>
-  <!-- 
-    searchKeyword 라는 이름의 Angular 모델을 선언해 주었다.
-    여기에 입력된 내용은 searchKeyword 라는 모델에 자동으로 들어간다.
-   -->
-  OrderBy : 
-  <select ng-model="orderProperty">
-    <option value="name" selected>name</option>
-    <option value="snippet">snippet</option>
-    <option value="no">no</option>
-  </select>
-  <!-- 
-    orderProperty 라는 임의의 이름으로 정렬 순서를 정해줄 앵귤러 모델을 선언해 주었다.
-   -->
-  <ul>
-    <li ng-repeat="phone in phones | filter:searchKeyword | orderBy:orderProperty">
-      NO : {{ phone.no }}<br/>
-      Name : {{ phone.name }}<br/>
-      Snippet : {{ phone.snippet }}
-    </li>
-    <!-- 
-      for( var i in array ) 와 동일한 효과를 주는 방식이다.
-      뷰는 ul 아래 li가 ng-repeat 속성을 통해
-      phone 객체 안에 이름과 스니펫에 대한 속성을 반복적으로 출력하는 부분을 통해 살펴 볼 수 있다.
-      데이터 모델은 예제에서는 단순하게 Phone 객체들의 배열로 표현된다.
-      이 배열들은 PhoneListCtrl 컨트롤러에 의해 제어됨.
-      AngularJS에서 뷰는 데이터 모델의 값들이 HTML 템플릿을 통해 보여진 결과라고 볼 수 있음.
-      언제든 모델이 변하면 AngularJS는 적절하게 연결된 요소를 반영하여 뷰를 업데이트 한다.
-
-      filter가 추가 되었다.
-      filter 함수는 ng-repeat에 영향을 주게 된다.
-      특별히 searchKeyword에 입력된 값에 따라 내용을 필터링해서 보여준다.
-
-      orderBy 라는 항목이 추가 되었다.
-      filter 함수가 매칭되는 내용을 찾는 거라면,
-      orderBy는 value에 할당된 값과 일치하는 객체의 요소 명을 기준으로 정렬한다.
-     -->
-  </ul>
-  <p>
-    Search Keyword : {{searchKeyword || 'None'}}<br/>
-    Sort By : {{orderProperty}}
-  </p>
+  <!-- 앵글러 뷰 -->
+  <div ng-view></div>
 </body>
 </html>
