@@ -1,0 +1,38 @@
+<html ng-app="myApp">
+  <head>
+    <meta charset="utf-8">
+    <title>컨트롤러 간의 데이터 통신</title>
+    <script src="../angularJS_1.0.2.js"></script>
+    <script type="text/javascript" charset="utf-8">
+      
+      var app = angular.module('myApp', []);
+
+      app.factory('service', function() {
+          var service = {};
+          service.val = 8;
+              
+          return service;
+      });
+
+      function Ctrl1($scope, service) {
+          $scope.value = service;
+      }
+
+      function Ctrl2($scope, service) {
+          $scope.value = service;
+      }
+
+    </script>
+  </head>
+  <body>
+      <div ng-controller="Ctrl1">
+          <h2>Ctrl1</h2>
+          Upper Val: <input ng-model="value.val">
+      </div>
+      <hr />
+      <div ng-controller="Ctrl2">
+          <h2>Ctrl2</h2>
+          Lower Val: {{value.val}}
+      </div>
+  </body>
+</html>
