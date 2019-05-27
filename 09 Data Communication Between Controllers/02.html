@@ -1,0 +1,54 @@
+
+<html>
+    <head>
+      <meta charset="utf-8">
+      <title>컨트롤러 간의 데이터 통신</title>
+      <script src="../angularJS_1.0.2.js"></script>
+      <script type="text/javascript" charset="utf-8">
+
+        var myModule = angular.module('myModule', []);
+
+        function ParentController($scope) {
+            $scope.handleClick = function(msg) {
+                $scope.$broadcast('handleChild', {message : msg}); 
+            };
+            
+            $scope.$on('updateParent', function(event, args) {
+                $scope.message = 'Child MSG: ' + args.message;
+            });  
+        }
+
+        function ChildController($scope) {
+            $scope.$on('handleChild', function(event, args) {
+                $scope.message2 = 'Parents MSG: ' + args.message;
+            });        
+            
+            $scope.handleClick = function() {
+                $scope.$emit('updateParent', {message: $scope.message2});
+            };
+            
+        }
+
+        ParentController.$inject = ['$scope'];
+        ChildController.$inject = ['$scope'];
+
+      </script>
+    </head>
+    <body ng-app="myModule">
+
+        <div ng-controller="ParentController">
+          <h2>ParentController</h2>
+          <input ng-model="message">
+          <button ng-click="handleClick(message);">Handle Child</button>
+          
+          <hr>
+
+          <div ng-controller="ChildController">
+            <h2>ChildController</h2>
+            <input ng-model="message2" >
+            <button ng-click="handleClick();">Handle Parent</button>
+          </div>
+        </div>
+            
+    </body>
+  </html>
