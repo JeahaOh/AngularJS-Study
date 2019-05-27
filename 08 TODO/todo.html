@@ -1,0 +1,52 @@
+<html ng-app>
+  <head>
+    <meta charset="utf-8">
+    <title>간단한 할일</title>
+    <script src="../angularJS_1.0.2.js"></script>
+    <script type="text/javascript" charset="utf-8">
+      function todoController($scope, $http){
+        // $http.get('todo.json')
+        //   .success(function(data){
+        //     $scope.todos = data;
+        //   });
+        
+        $scope.todos = [{
+                          "checked": "checked",
+                          "work": "AngularJS 튜토리얼 시작"
+                        },
+                        {
+                          "checked": "",
+                          "work": "AngularJS 튜토리얼 다 보기"
+                        },
+                        {
+                          "checked": "",
+                          "work": "AngularJS 이해하기"
+                        }
+                      ];
+
+        $scope.addTodo = function() {
+          if($scope.newTodo){
+            $scope.todos.push({
+              "checked":"",
+              "work":$scope.newTodo
+            });
+            $scope.newTodo = null;
+          } else {
+            alert('할 일을 주세요!');
+          }
+        };
+      }
+    </script>
+  </head>
+  <body ng-controller="todoController">
+    <ul>
+      <li ng-repeat="todo in todos">
+        <input type="checkbox" checked="{{todo.checked}}">
+        {{todo.work}}
+      </li>
+    </ul>
+
+    <input type="text" ng-model="newTodo">
+    <input type="button" value="할일 추가" ng-click="addTodo()">
+  </body>
+</html>
