@@ -4,13 +4,15 @@
     <script type="text/javascript" src="../angularJS_1.0.2.js"></script>
     <script type="text/javascript" src="module.js"></script>
   </head>
-  <body>
-    <section ng-controller="AppCtrl">
+  <body ng-controller="AppCtrl">
+    <section >
       <h1>Hell, {{name}}</h1>
       <div>
         <label for="name">My Name Is</label>
-        <input name="name" ng-nodel="name" type="text"/>
+        <input name="name" ng-model="name" type="text"/>
       </div>
+      <br/>
+      <button ng-click="reverseNameService()">Reverse Name Via Service</button>
     </section>
   </body>
 </html>
