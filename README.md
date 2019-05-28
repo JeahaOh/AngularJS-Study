@@ -222,4 +222,51 @@ app.service('nameTrickService', function() {
   };
 });
 ```
-nameTrickService 라는 이름의 서비스를 등록, 컨트롤러에 주입, $scope-level 함수를 주입하였다.
+nameTrickService 라는 이름의 서비스를 등록, 컨트롤러에 주입, $scope-level 함수를 주입하였다.  
+  
+.service와 동일하게 사용할 수 있는 메소드로 .factory()라는 메소드가 존재한다.  
+.factory()는 어떤 객체를 리턴하기 전에 몇 가지 코드를 실행할 수 있는 공간을 제공한다.  
+이런 특성을 활용해서 서비스와 동일하게 사용 될 수 있게 된다.
+```
+app.factory('nameTrickFactory', function() {
+  console.log('FACTORY');
+  return {
+    reverse : function(name){
+      console.log('FACTORY');
+      return name.split("").reverse().join("");
+    }
+  }
+});
+```
+nameTrickFactory라는 서비스가 등록 됨.  
+service와 factory는 서비스 모듈에 등록했지만, 컨트롤러에 주입 하기 전에는 실제로 사용 할 수 없다.  
+서비스를 컨트롤러에 주입.
+```
+app.controller('AppCtrl', function AppCtrl($scope, nameTrickService, nameTrickFactory) {
+  //  name이라는 ng-model에 Guest 라는 값을 넣는다.
+  $scope.name = 'Angular';
+  console.log('Controller Defined');
+  
+  //  nameTrickService를 사용하는 스코프 레벨 함수 선언.
+  $scope.reverseNameService = function() {
+    console.log("service function call");
+    $scope.name = nameTrickService.reverse($scope.name);
+  };
+
+  //  같은 기능을 하는 nameTrickFactory를 사용하는 스코프 레벨 함수 선언.
+  $scope.reverseNameFactory = function() {
+    console.log("factory function call");
+    $scope.name = nameTrickFactory.reverse($scope.name);
+  };
+
+});
+```
+
+소스를 실행하면 둘다 동일한 기능을 수행하고 있음을 알 수 있다.  
+AngularJS에 서비스를 추가하는 두가지 주된 방법을 알아 보았다.  
+정리하자면,  
+- .service()
+  - 약간 더 단순한 구조.
+- .factory()
+  - 리소스나 라이브러리를 초기화 하는 일회성 작업같은 경우에는 .factory()를 사용하면,  
+    서비스 객체를 리턴하기에 앞서서 코드를 실행할 수 있도록 해줄 수 있다.
