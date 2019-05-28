@@ -144,4 +144,59 @@ $scope 상에 submitStatus라는 변수가 있고, 이 변수가 전송 여부�
 ```
 예제가 없어서 모르겠다..  
   
-  
+# 12 서비스(Service)란 무엇인가...
+jQuery에 익숙해져 있는 경우 Angular에서 등장한 module의 개념과 이를 활용하는 방법, 설정하는 방법에 대해 혼란 스러울 수 있다.  
+어디서 부터 시작하는지, 지시어와는 어떤 관계인지, 모듈과 서비스의 관계는 무엇이고, 또 factory는 무엇인지 이해 하기 어렵다.  
+AngularJS에서 서비스를 생성하고 사용하는 간단한 예제를 통해 AngularJS에서 서비스를 어떻게 사용하는지 알아보자.  
+
+앵귤러 1.0에서 어플리케이션을 선언하는 표준 정의.
+```
+var app = angular.module('myApp', []);
+```
+하나의 앵귤러 어플리케이션은 적어도 하나의 모듈은 포함하게 된다.  
+(생략이 가능하지만, 단순한 수준에서만 가능하고, AngularJS의 특징이 없어짐.)  
+모듈의 첫번째 인자는 어플리케이션의 이름이다.  
+아무거나 적으면 안되고, HTML 파일에서 ng-app="어플리케이션 명" 으로 설정한 이름을 줘야 AngularJS에서 모듈을 찾을 수 있다.  
+두번째 파라미터는 [] 배열 형태로 되어 있는데 해당 모듈에서 사용할 다른 모듈들을 적는다.  
+resource나 cookie 등 AngularJS에서 미리 만들어 둔 모듈들을 등록하는 경우가 많다.  
+모든 AngularJS 어플리케이션은 이렇게 정의된 어플리케이션(혹은 모듈)에 데이터나 함수들을 담고 있는 컨트롤러를 한 개 이상 붙이게 된다.  
+컨트롤러는 대략 아래와 같이 등록 해 준다.
+```
+//  myApp 모듈에 컨트롤러를 추가한다.
+app.controller('AppCtrl', function AppCtrl($scope){
+  //  name이라는 ng-model에 Guest라는 값을 넣는다.
+  $scope.name = 'Guest';
+}
+```
+위에서 선언된 모듈과 컨트롤러를 사용하는 간단한 어플리케이션은 대략 아래와 같은 형태가 될 것이다.  
+module.js
+```
+//  모듈 선언
+var app = angular.module('myApp', []);
+
+//  myApp 모듈에 컨트롤러를 추가한다.
+app.controller('AppCtrl', function AppCtrl($scope){
+  //  name이라는 ng-model에 Guest 라는 값을 넣는다.
+  $scope.name = 'Guest';
+})
+```
+
+HTML 파일
+```
+<!DOCTYPE HTML>
+<html ng-app="myApp">
+  <head>
+    <script type="text/javascript" src="angular CDN"></script>
+    <script type="text/javascript" src="module.js"></script>
+  </head>
+  <body>
+    <section ng-controller="AppCtrl">
+      <h1>Hell, {{name}}</h1>
+      <div>
+        <label for="name">My Name Is</label>
+        <input name="name" ng-nodel="name" type="text"/>
+      </div>
+    </section>
+  </body>
+</html>
+```
