@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+  <div ng-app='app' study-directive></div>
+
+  <script>
+    var app = angular.module('app', []);
+
+    app.directive('studyDirective', function() {
+      console.log('?');
+      return {
+        template: "It was made in a directive constructor??"
+      };
+    });
+  </script>
+<pre>
+`div`태그에서는 `study-directive`로 표기했지만,
+`script`태그 안에서는 `studyDirective`로 표기했다는것을 인지 해야함.
+</pre>
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+  <div>
+    <p>Without `ng-app` : {{ 5 + 5 }}</p>
+  </div>
+
+  <div ng-app='' ng-init='myCol="grey"'>
+    <p>With `ng-app` : {{ 5 + 5 }}</p>
+    </br>
+    <input ng-model='myCol' style='background-color: {{myCol}}'/>
+  </div>
+</body>
+</html>
