@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+  <div ng-app='' ng-init='routes=[
+    {capital : "Oslo",   country : "Norway"},
+    {capital : "Berlin", country : "Germany"},
+    {capital : "Prague", country : "Chech"},
+    {capital : "London", country : "UK"},
+    {capital : "Stockholm", country : "Sweden"},
+    {capital : "Helsinki", country : "Finland"},
+    {capital : "Moscow", country : "Rusia"}
+  ]'>
+    <ul>
+      <li ng-repeat='r in routes'>
+        {{ r.capital + ', ' + r.country }}
+      </li>
+    </ul>
+  </div>
+
+</body>
+</html>

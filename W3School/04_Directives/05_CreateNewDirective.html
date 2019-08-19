@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+
+<body ng-app='app'>
+
+  <angular-study-directive></angular-study-directive>
+  
+  <script>
+    var app = angular.module('app', []);
+
+    app.directive('angularStudyDirective', function(){
+      console.log('angularStudyDirective RUN!!');
+      return {
+        template: '<h1>Made By Directive!!</h1>'
+      };
+    });
+  </script>
+
+</body>
+
+
+</html>

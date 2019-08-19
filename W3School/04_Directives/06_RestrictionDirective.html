@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+
+<body ng-app='app'>
+
+  <element-directive></element-directive>
+
+  <div attribute-directive></div>
+
+  <div class='class-directive'></div>
+
+  <!-- directive: comment-directive -->
+
+  <hr>
+
+  <all-directive></all-directive>
+
+  <div all-directive></div>
+
+  <div class="all-directive"></div>
+
+  <!-- derective: all-directive -->
+  
+  <script>
+    var app = angular.module('app', []);
+
+    app.directive('elementDirective', function(){
+      console.log('elementDirective RUN!!');
+      return {
+        restrict: 'E',
+        template: '<h1>Made By Element Directive!!</h1>'
+      };
+    });
+
+    app.directive('attributeDirective', function(){
+      console.log('attributeDirective RUN!!');
+      return {
+        restrict: 'A',
+        template: '<h1>Made By Attribute Directive!!</h1>'
+      };
+    });
+
+    app.directive('classDirective', function(){
+      console.log('classDirective RUN!!');
+      return {
+        restrict: 'C',
+        template: '<h1>Made By Class Directive!!</h1>'
+      };
+    });
+
+    app.directive('commentDirective', function(){
+      console.log('commentDirective RUN!!');
+      return {
+        restrict: 'M',
+        replace: true,
+        //  comment directive는 replace: true 를 해줘야 한다.
+        template: '<h1>Made By Comment Directive!!</h1>'
+      };
+    });
+
+    app.directive('allDirective', function(){
+      console.log('allDirective RUN!!');
+      return {
+        restrict: 'EACM',
+        replace: true,
+        template: '<h1>Made By All Kind Directive!!</h1>'
+      };
+    });
+  </script>
+
+</body>
+
+
+</html>
