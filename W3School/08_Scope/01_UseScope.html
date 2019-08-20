@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+  
+  <div ng-app='app' ng-controller='ctrl'>
+    <h1>{{val}}</h1>
+  </div>
+
+  <script>
+    angular.module('app', []).controller('ctrl', function($scope){
+      $scope.val = 'ANGULAR_JS';
+    })
+  </script>
+
+  <p>
+    The property 'val' was made in the controller.<br>
+    And can be referred to in the view by useing th {{ }} brackets.
+  </p>
+
+</body>
+</html>

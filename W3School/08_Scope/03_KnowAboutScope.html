@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+  
+  <div ng-app='app' ng-controller='ctrl'>
+    <ul>
+      <li ng-repeat='x in list'>{{x}}</li>
+    </ul>
+  </div>
+
+  <script>
+    angular.module('app', []).controller('ctrl', function($scope){
+      $scope.list = ['OSLO', 'BERLIN', 'PRAGUE'];
+    })
+  </script>
+
+  <p>The variable "x" has a different value for each repetition, proving that each repetition has its own scope.</p>
+
+</body>
+</html>

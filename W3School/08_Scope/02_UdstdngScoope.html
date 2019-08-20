@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+  
+  <div ng-app='app' ng-controller='ctrl'>
+    <input ng-model='val' />
+    <h1>VAL : {{val}}</h1>
+  </div>
+
+  <script>
+    angular.module('app', []).controller('ctrl', function($scope){
+      $scope.val = 'ANGULAR_JS';
+    })
+  </script>
+
+  <p>
+    When you change the name in the input field,<br>
+    the changes will affect the model, and it will also affect the name property in the controller.
+  </p>
+
+</body>
+</html>
