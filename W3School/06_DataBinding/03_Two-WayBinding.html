@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+  
+  <div ng-app='app' ng-controller='ctrl'>
+    Name : <input ng-model='framework'/>
+    <h1>{{framework}}</h1>
+  </div>
+
+  <script>
+  var app = angular.module('app', []);
+
+  app.controller('ctrl', function($scope) {
+    $scope.framework='AngularJS';
+    $scope.lang='JavaScript';
+  });
+  </script>
+
+  <p>
+    Change the input field, and the model data will change automatically, and therefore also the header will change its value.
+  </p>
+
+
+</body>
+</html>

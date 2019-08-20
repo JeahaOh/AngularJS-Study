@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+  
+  <div ng-app='app' ng-controller='ctrl'>
+    <p ng-bind='framework'></p>
+    <p>Use the ng-bind directive to bind the innerHTML of an element to a property in the data model.</p>
+    <br>
+    <p>Lang : {{lang}}</p>
+    <p>You can use double braces to display content from the data model.</p>
+  </div>
+
+  <script>
+    var app = angular.module('app', []);
+    app.controller('ctrl', function($scope) {
+      $scope.framework = 'AngularJS';
+      $scope.lang = 'JavaScript';
+    });
+  </script>
+
+
+</body>
+</html>

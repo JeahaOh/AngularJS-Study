@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+  
+  <div ng-app='app' ng-controller='ctrl'>
+    <h1 ng-click='changeVal()'>{{val}}</h1>
+  </div>
+
+  <script>
+  var app = angular.module('app', []);
+
+  app.controller('ctrl', function($scope) {
+    $scope.val='AngularJS';
+    $scope.changeVal = function(){
+        $scope.val='JavaScript';
+    }
+  });
+  </script>
+
+  <p>
+    Click on the header to run the "changeVal" function.<br>
+    This example demonstrates how to use the controller to change model data.
+  </p>
+
+</body>
+</html>
