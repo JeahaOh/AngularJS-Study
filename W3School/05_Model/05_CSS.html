@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<style>
+  input.ng-empty {
+      background-color: black;
+  }
+  input.ng-not-empty {
+    background-color: cadetblue;
+  }
+  input.ng-valid {
+    background-color: whitesmoke;
+  }
+  input.ng-invalid {
+    background-color: lightcoral;
+  }
+  input.ng-untouched {
+    background-color: darkgray;
+  }
+  input.ng-touched {
+      background-color: darkturquoise;
+  }
+</style>
+<body>
+
+<form ng-app='' name='form'>
+  Enter your name: 
+  <input name='name' ng-model='text' value='ASDF' required/>
+</form>
+<p>Edit the text field and it will get/lose classes according to the status.</p>
+<p><b>Note : </b> A text field with the "required" attribute is not valid when it is empty.</p>
+
+</body>
+</html>

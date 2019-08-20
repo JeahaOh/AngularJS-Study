@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+  <form ng-app='' name='form' ng-init='text="asdf@test.tt"'>
+    Email : <input type='email' name='email' ng-model='text' required>
+    <h1>STATUS</h1>
+    <p>Valid   : {{form.email.$valid}}.</p>
+    <p>참일 경우, 값은 모든 기준을 충족시킴.  (if true, the value meets all criteria)</p>
+
+    <p>Dirty   : {{form.email.$dirty}}.</p>
+    <p>참일 경우, 값은 변경되었음. (if true, the value has been changed)</p>
+
+    <p>Touched : {{form.email.$touched}}.</p>
+    <p>참일 경우, 그 field에 초첨이 있다? (if true, the field has been in forcus)</p>
+
+    <p>Error : {{form.email.$error}}.</p>
+    <p>애는 뭘까?</p>
+  </form>
+
+</body>
+</html>
