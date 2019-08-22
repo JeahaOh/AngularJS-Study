@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+  <div ng-app='app' ng-controller='ctrl'>
+    <p>Use a filter when displaying the array [225, 251, 200] : </p>
+
+    <ul>
+      <li ng-repeat='x in counts'>{{x | form}}</li>
+    </ul>
+
+    <p>This filter uses a service that converts numbers into hexadecimal values.</p>
+  </div>
+    
+  <script>
+    angular.module('app', [])
+    .service('hexafy', function() {
+      this.func = function(x) {
+        console.log(x);
+        console.log(x.toString(16));
+        return x.toString(16);
+      }
+    })
+    .filter('form', ['hexafy', function(hexafy) {
+      return function(x) {
+        return hexafy.func(x);
+      };
+    }])
+    .controller('ctrl', function($scope) {
+      $scope.counts = [225, 251, 200];
+    });
+  </script>
+
+</body>
+</html>

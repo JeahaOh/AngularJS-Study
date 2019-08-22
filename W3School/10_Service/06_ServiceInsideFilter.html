@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+  <div ng-app='app' >
+    Convert the number 255, using a custom made service inside a custom made filter : 
+    <h3>{{255 | form}}</h3>
+  </div>
+    
+  <script>
+    angular.module('app', [])
+    .service('hexafy', function() {
+      this.func = function(x) {
+        console.log(x);
+        console.log(x.toString(16));
+        return x.toString(16);
+      }
+    })
+    .filter('form', ['hexafy', function(hexafy) {
+      return function(x) {
+        return hexafy.func(x);
+      };
+    }]);
+  </script>
+
+</body>
+</html>

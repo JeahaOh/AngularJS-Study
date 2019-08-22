@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+  <div ng-app='app' ng-controller='ctrl'>
+    <p>The Time is :</p>
+    <h3>{{theTime}}</h3>
+  </div>
+  
+  <p>The $interval service runs a function every epecified millisecond.</p>
+    
+  <script>
+    angular.module('app', [])
+    .controller('ctrl', function($scope, $interval) {
+      $scope.theTime = new Date().toLocaleTimeString();
+      $interval(function(){
+        $scope.theTime = new Date().toLocaleTimeString();
+      }, 1000);
+    });
+  </script>
+
+</body>
+</html>

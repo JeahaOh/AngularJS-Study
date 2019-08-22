@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+  <div ng-app='app' ng-controller='ctrl'>
+    <p>The hexadecimal value of <input ng-model='val' /> is : </p>
+    <h3>{{val | hexy}}</h3>
+  </div>
+  
+  <p>A custom service with a method that converts a given number into a hexadecimal number.</p>
+    
+  <script>
+    angular.module('app', [])
+    .service('hexafy', function() {
+      this.func = function(x) {
+        console.log('hexafy service : ' + x + ' -> ' + x.toString(16));
+        if(typeof(x) != 'number'){
+          x = parseInt(x);
+        }
+        return x.toString(16);
+      }
+    })
+    .filter('hexy', ['hexafy', function(hexafy) {
+      return function(x){
+        console.log('hexy filter : ' + x);
+        return hexafy.func(x);
+      }
+    }])
+    .controller('ctrl', function($scope, hexafy) {
+      $scope.val = 255;
+    });
+  </script>
+
+</body>
+</html>

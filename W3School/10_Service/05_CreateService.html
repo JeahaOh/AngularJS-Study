@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+  <div ng-app='app' ng-controller='ctrl'>
+    <p>The hexadecimal value of 255 is : </p>
+    <h3>{{hex}}</h3>
+  </div>
+  
+  <p>A custom service with a method that converts a given number into a hexadecimal number.</p>
+    
+  <script>
+    angular.module('app', [])
+    .service('hexafy', function() {
+      this.func = function(x) {
+        console.log(x);
+        console.log(x.toString(16));
+        return x.toString(16);
+      }
+    })
+    .controller('ctrl', function($scope, hexafy) {
+      $scope.hex = hexafy.func(255);
+    });
+  </script>
+<!-- 바로바로 바뀌는건 어떻게 함??? -->
+</body>
+</html>
