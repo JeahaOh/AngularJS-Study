@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+  <div ng-app='app' ng-controller='ctrl'>
+    <ul>
+      <li ng-repeat='x in data'>
+        {{x.Name + ' from ' + x.Country + ' ' + x.City}}
+      </li>
+    </ul>
+  </div>
+    
+  <script>
+    angular.module('app', [])
+    .controller('ctrl', function($scope, $http){
+      $http.get('/customers')
+      .then(function(response){
+        //  First function handles success
+        console.log(response.data);
+        $scope.data = response.data.records;
+        console.log($scope.data);
+      });
+    });
+  </script>
+
+</body>
+</html>
