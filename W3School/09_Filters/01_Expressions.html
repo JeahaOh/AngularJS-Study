@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+  <div ng-app="app" ng-controller="ctrl">
+    <p>The uppercase is {{ framework | uppercase }}</p>
+    <p>The lowercase is {{ lang | lowercase }}</p>
+  </div>
+    
+  <script>
+    angular.module('app', []).controller('ctrl', function($scope) {
+      $scope.framework = "Angular_Js",
+      $scope.lang = "JavaScript"
+    });
+  </script>
+
+</body>
+</html>

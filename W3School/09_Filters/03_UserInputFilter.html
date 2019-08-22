@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+  <p>Click the table headers to change the sorting order:</p>
+  <div ng-app="app" ng-controller="ctrl">
+    <table border='1' width='100%'>
+      <tr>
+        <th ng-click='orderByStr("city")'>city</th>
+        <th ng-click='orderByStr("country")'>Country</th>
+      </tr>
+      <tr ng-repeat='route in routes | orderBy: OrdrBy'>
+        <td>{{route.city}}</td>
+        <td>{{route.country}}</td>
+      </tr>
+    </table>
+  </div>
+    
+  <script>
+    angular.module('app', []).controller('ctrl', function($scope) {
+      $scope.routes = [
+        {city : "Oslo",   country : "Norway"},
+        {city : "Turku", country : "Finland"},
+        {city : "Prague", country : "Chech"},
+        {city : "Berlin", country : "Germany"},
+        {city : "Saint-Peterburg", country : "Rusia"},
+        {city : "London", country : "UK"},
+        {city : "Moscow", country : "Rusia"},
+        {city : "Stockholm", country : "Sweden"},
+        {city : "Stavanger",   country : "Norway"},
+        {city : "Chesky", country : "Chech"},
+        {city : "Helsinki", country : "Finland"},
+        {city : "Goteborg", country : "Sweden"},
+        {city : "Koln", country : "Germany"},
+        {city : "Edinburgh", country : "UK"}
+      ];
+      $scope.orderByStr = function(x){
+        $scope.OrdrBy = x;
+      }
+    });
+  </script>
+
+</body>
+</html>
