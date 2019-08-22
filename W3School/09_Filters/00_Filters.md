@@ -155,4 +155,33 @@ Make a custom filter called `myFormat` :
 The `myFormat` filter will format every other character to uppercase.  
   
 ```
+  <ul ng-app='app' ng-controller='ctrl'>
+    <li ng-repeat='city in cities'>
+      {{city | myFormat}}
+    </li>
+  </ul>
+    
+  <script>
+    angular.module('app', [])
+    .filter('myFormat', function(){
+      return function(x){
+        var i, c, txt = '';
+        for ( i = 0; i < x.length; i++ ) {
+          c = x[i];
+          if ( i % 2 == 0 ) {
+            c = c.toUpperCase();
+          }
+          txt += c;
+        }
+        return txt;
+      };
+    })
+    .controller('ctrl', function($scope) {
+      $scope.cities = [
+        "Oslo", "Turku", "Prague", "Berlin", "Saint-Peterburg",
+        "London", "Moscow", "Stockholm", "Stavanger", "Chesky",
+        "Helsinki", "Goteborg", "Koln", "Edinburgh"
+      ];
+    });
+  </script>
 ```
