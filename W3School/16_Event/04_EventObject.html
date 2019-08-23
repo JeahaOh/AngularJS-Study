@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html  ng-app="app" ng-controller='ctrl'>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<style>
+  body {
+    margin : 0;
+    padding : 0;
+    width : 100%;
+    height : 100%;
+  }
+</style>
+<body ng-mousemove='func($event)'>
+
+  <div>
+    <h1>Mouse Over Me!</h1>
+    <p>Coordinates : {{ x + ', ' + y }}</p>
+    <p>Mouse over the heading to display the value of clientX and clientY from the event object.</p>
+  </div>
+
+  <script>
+    angular.module('app', [])
+    .controller('ctrl', function($scope){
+      $scope.func = function( e ) {
+        $scope.x = e.clientX;
+        $scope.y = e.clientY;
+      }
+    });
+  </script>
+  
+</body>
+</html>

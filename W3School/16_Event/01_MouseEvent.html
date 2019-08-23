@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+  <div ng-app="app" ng-controller='ctrl'>
+    <h1 ng-mousemove='cnt = cnt + 1'>Mouse Over Me!</h1>
+    <h2>{{ cnt }}</h2>
+  </div>
+
+  <script>
+    angular.module('app', [])
+    .controller('ctrl', function($scope){
+      $scope.cnt = 0;
+    });
+  </script>
+  
+</body>
+</html>
