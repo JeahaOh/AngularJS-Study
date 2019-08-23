@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+  <div ng-app='app' ng-controller='ctrl'>
+    <select ng-model='selected' ng-options='x for x in list'></select>
+  </div>
+
+  <p>This example shows how to fill a dropdown list using the ng-options directive.</p>
+  
+  <script>
+    angular.module('app', [])
+    .controller('ctrl', function($scope){
+      $scope.list = ['Oslo', 'Stockholm', 'Berlin', 'Prague'];
+    });
+  </script>
+
+</body>
+</html>

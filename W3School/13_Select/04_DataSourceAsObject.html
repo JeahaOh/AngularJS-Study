@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+  <div ng-app='app' ng-controller='ctrl'>
+    <p>Select a car : </p>
+    <select ng-model='selectedCar' ng-options='x for (x, y) in cars'></select>
+    <h3>You selected : {{ selectedCar }}</h3>
+  </div>
+
+  <p>This example demonstrates the use of an object as the data source when creating a dropdown list.</p>
+  
+  <script>
+    angular.module('app', [])
+    .controller('ctrl', function($scope){
+      $scope.cars = {
+        car01 : 'Ford',
+        car02 : 'Fiat',
+        car03 : 'Volvo'
+      };
+    });
+  </script>
+
+</body>
+</html>
