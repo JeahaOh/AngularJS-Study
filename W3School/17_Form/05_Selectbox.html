@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body ng-app=''>
+
+  <form>
+    Select a topic : 
+    <select ng-model='val'>
+      <option value=''></option>
+      <option value='JEJE'>JEJE</option>
+      <option value='SorR_Ki'>SorR_Ki</option>
+      <option value='IsoL'>IsoL</option>
+    </select>
+  </form>
+  
+  <div ng-switch='val'>
+    <div ng-switch-when='JEJE'>
+      <h3>JEJE</h3>
+      <p>Welcome to JEJE World.</p>
+    </div>
+    <div ng-switch-when='SorR_Ki'>
+      <h3>SorR_Ki</h3>
+      <p>We All SorrowKissed Child.</p>
+    </div>
+    <div ng-switch-when='IsoL'>
+      <h3>IsoL</h3>
+      <p>Isolation in Microcosm.</p>
+    </div>
+  </div>
+
+  <p>The ng-switch directive hides and shows HTML sections depending on the value of the dropdown list.</p>
+  
+</body>
+</html>
