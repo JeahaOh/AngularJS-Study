@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body ng-app='app'>
+
+  <form name='form'>
+    <p>Try writing in the input field :</p>
+    <input name='val' ng-model='val' required study-directive/>
+  </form>
+
+  <p>The input's valide state is : </p>
+  <h1>{{ form.val.$valid }}</h1>
+
+  <script>
+    angular.module('app', [])
+    .directive('studyDirective', function() {
+      return {
+        require: 'ngModel',
+        link: function(scope, element, attr, mCtrl) {
+          function studyValidation( value ) {
+            if (value.indexOf('e') > -1 ) {
+              mCtrl.$setValidity('charE', true);
+            } else {
+              mCtrl.$setValidity('charE', false);
+            }
+            return value;
+          }
+          mCtrl.$parsers.push(studyValidation);
+        }
+      }
+    });
+  </script>
+
+  <p>The input field must contain the character 'e' to be consider valid.</p>
+</body>
+</html>

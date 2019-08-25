@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body ng-app=''>
+
+  <p>Try writing in the input field :</p>
+  <form name='form'>
+    <input name='val' ng-model='val' required />
+  </form>
+
+  <p>The input's valid state is :</p>
+  <h3>{{form.val.$valid}}</h3>
+
+</body>
+</html>

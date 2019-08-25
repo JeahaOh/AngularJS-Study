@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<style>
+  input.ng-invalid {
+    background-color: lightpink;
+  }
+  input.ng-valid {
+    background-color: lightslategrey;
+  }
+</style>
+<body ng-app=''>
+
+  <form name='form'>
+    <p>Try writing in the input field :</p>
+    <input name='val' ng-model='val' required />
+    <p>The input field requires content, and will therefore become grey when write in it.</p>
+  </form>
+
+
+</body>
+</html>

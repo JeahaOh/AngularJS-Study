@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body ng-app=''>
+
+  <p>Try writing an E-mail address in the input field :</p>
+  <form name='form'>
+    <input type='email' name='val' ng-model='val' required />
+  </form>
+
+  <p>The input's valid state is :</p>
+  <h3>{{form.val.$valid}}</h3>
+  <p>Note that the stat of the input field is 'true' before you start writing in it, even if it does not contain an e-mail adress.</p>
+
+</body>
+</html>

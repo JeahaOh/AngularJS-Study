@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body ng-app=''>
+
+  <p>Try leaving the first input field blank :</p>
+  <form name='form'>
+    <p>Name :
+      <input name='name' ng-model='name' required />
+      <span ng-show='form.name.$touched && form.name.$invalid' >
+        The name is required.
+      </span>
+    </p>
+    <p>Address :
+      <input name='addr' ng-model='addr' required />
+    </p>
+  </form>
+
+  <p>We use the ng-show directive to only show the error message if the field has been touched AND is empty.</p>
+
+</body>
+</html>
