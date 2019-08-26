@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<style>
+  @keyframes change {
+    from {
+      height: 100px;
+    } to {
+      height: 0;
+    }
+  }
+  div {
+    background-color: lightslategrey;
+    height: 100px;
+  }
+  div.ng-hide {
+    animation: 0.5s change;
+  }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.js"></script>
+
+<body ng-app='ngAnimate'>
+
+  <h1>Hide the DIV : <input type='checkbox' ng-model='check' /> </h1>
+  <div ng-hide='check'></div>
+
+</body>
+</html>
