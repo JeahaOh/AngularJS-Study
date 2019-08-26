@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+  <div ng-app='app' ng-controller='ctrl'>
+    <div ng-include='"/table"'></div>
+  </div>
+
+  <script>
+  angular.module('app', [])
+  .controller('ctrl', function( $scope, $http ) {
+    $http.get('customers').then( function( response ) {
+      console.log(response);
+      $scope.names = response.data.records;
+    });
+  });
+  </script>
+
+  <p>The HTML, ang AngularJS code, for this table ars located in the file '02_table.html'</p>
+
+</body>
+</html>
