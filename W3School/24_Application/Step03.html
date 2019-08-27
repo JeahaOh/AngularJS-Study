@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+  <script>
+    angular
+    .module('shoppingList', [])
+    .controller('ctrl', function($scope) {
+      $scope.products = ['Milk', 'Bread', 'Cheese'];
+      $scope.addItem = function() {
+        $scope.products.push($scope.add);
+        $scope.add = '';
+      }
+      $scope.removeItem = function(x) {
+        $scope.products.splice(x, 1);
+      }
+    });
+  </script>
+
+  <div ng-app='shoppingList' ng-controller='ctrl'>
+    <ul>
+      <li ng-repeat='x in products'>{{ x }} <span ng-click='removeItem($index)'>&ensp;&times;</span></li>
+    </ul>
+    <input ng-model='add'>
+    <button ng-click='addItem()'>Add</button>
+  </div>
+
+  <br><br><hr><br><br>
+  <p>So Far we have made an HTML list based on the items of an array.</p>
+  <p>Write in the input field to add items.d</p>
+  <p>Click the litte X to remove an item from the shopping list.</p>
+
+</body>
+</html>
